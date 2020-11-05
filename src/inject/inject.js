@@ -25,35 +25,65 @@ chrome.extension.sendMessage({}, function(response) {
                     xhr.send(obj.body);
                 });
             };
-            
-            let render = (accountId, accountName) => {
+            let buildEnvText = (accountId, email) => {
+              let env = (() => {
+                switch (document.domain) {
+                  case 'console-development.treasuredata.com':
+                    return 'development aws';
+                  case 'console-development.eu01.treasuredata.com':
+                    return 'development eu01';
+
+                  case 'console-staging.treasuredata.com':
+                    return 'staging aws';
+                  case 'console-staging.treasuredata.co.jp':
+                    return 'staging aws-tokyo';
+                  case 'console-staging.eu01.treasuredata.com':
+                    return 'staging eu01';
+                  case 'console-staging.ap02.treasuredata.com':
+                    return 'staging ap02';
+
+                  case 'console.treasuredata.com':
+                    return 'production aws';
+                  case 'console.treasuredata.co.jp':
+                    return 'production aws-tokyo';
+                  case 'console.eu01.treasuredata.com':
+                    return 'production eu01';
+                  case 'console.ap02.treasuredata.com':
+                    return 'production ap02';
+                }
+              })();
+              return env + ':' + accountId + ' - ' + email;
+            };
+
+            let render = (accountId, email) => {
                 let el = document.createElement('div');
-                el.innerText = 'Account: '+accountId+ ' Name: ' + accountName;
+                el.innerText = buildEnvText(accountId, email);
                 el.style.display = 'flex';
                 el.style.alignItems = 'center';
                 el.style.padding = '3px';
                 el.style.backgroundColor = 'rgb(0,193,222)';
                 el.style.color = '#EEEEEE';
                 el.style.position = 'fixed';
+                el.style.fontWeight = 'bold';
                 el.style.zIndex = 9999;
                 el.style.bottom = 0; // sticky to the bottom left;
                 el.style.borderRadius = '0 5px 5px 0';
                 document.body.appendChild(el);
             };
-            
+
             request({"url":"/v4/users/current"}).then(data => {
                 let response = JSON.parse(data);
                 let email = response.email;
                 let regex = /(?<=\+)[A-z]*(?=@)/gm;
-                let accountName = email.match(regex)[0];
+                // let accountName = email.match(regex)[0];
                 request({"url":"/v4/account"}).then(data => {
                     let response = JSON.parse(data);
                     let accountId = response.id;
-                    render(accountId, accountName);
+                    render(accountId, email);
                 })
             });
-        
+
         }
     }, 10);
-    
+
 });
