@@ -25,7 +25,7 @@ chrome.extension.sendMessage({}, function(response) {
                     xhr.send(obj.body);
                 });
             };
-            let buildEnvText = (accountId, email) => {
+            let buildEnvText = (accountId, userId, email) => {
               let env = (() => {
                 switch (document.domain) {
                   case 'console-development.treasuredata.com':
@@ -52,12 +52,12 @@ chrome.extension.sendMessage({}, function(response) {
                     return 'production ap02';
                 }
               })();
-              return env + ':' + accountId + ' - ' + email;
+              return `${env}:${accountId} - ${email}(${userId})`;
             };
 
-            let render = (accountId, email) => {
+            let render = (accountId, userId, email) => {
                 let el = document.createElement('div');
-                el.innerText = buildEnvText(accountId, email);
+                el.innerText = buildEnvText(accountId, userId, email);
                 el.style.display = 'flex';
                 el.style.alignItems = 'center';
                 el.style.padding = '3px';
@@ -72,14 +72,12 @@ chrome.extension.sendMessage({}, function(response) {
             };
 
             request({"url":"/v4/users/current"}).then(data => {
-                let response = JSON.parse(data);
-                let email = response.email;
+                let user = JSON.parse(data);
                 let regex = /(?<=\+)[A-z]*(?=@)/gm;
                 // let accountName = email.match(regex)[0];
                 request({"url":"/v4/account"}).then(data => {
-                    let response = JSON.parse(data);
-                    let accountId = response.id;
-                    render(accountId, email);
+                    let account = JSON.parse(data);
+                    render(account.id, user.id, user.email);
                 })
             });
 
