@@ -1,6 +1,6 @@
 {
   "name": "Which TD: Instantly know which account you are logged in",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "manifest_version": 2,
   "description": "",
   "homepage_url": "https://github.com/kiyoto",
@@ -27,7 +27,20 @@
         "https://console.treasuredata.com/*",
         "https://console.treasuredata.co.jp/*",
         "https://console.eu01.treasuredata.com/*",
-        "https://console.ap02.treasuredata.com/*"
+        "https://console.ap02.treasuredata.com/*",
+
+        "https://console-development-next.treasuredata.com/*",
+        "https://console-development.eu01-next.treasuredata.com/*",
+
+        "https://console-staging-next.treasuredata.com/*",
+        "https://console-staging-next.treasuredata.co.jp/*",
+        "https://console-staging.eu01-next.treasuredata.com/*",
+        "https://console-staging.ap02-next.treasuredata.com/*",
+
+        "https://console-next.treasuredata.com/*",
+        "https://console-next.treasuredata.co.jp/*",
+        "https://console.eu01-next.treasuredata.com/*",
+        "https://console.ap02-next.treasuredata.com/*"
       ],
       "js": [
         "src/inject/inject.js"

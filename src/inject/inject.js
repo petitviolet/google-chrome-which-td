@@ -29,26 +29,36 @@ chrome.extension.sendMessage({}, function(response) {
               let env = (() => {
                 switch (document.domain) {
                   case 'console-development.treasuredata.com':
+                  case 'console-development-next.treasuredata.com':
                     return 'development aws';
                   case 'console-development.eu01.treasuredata.com':
+                  case 'console-development-next.eu01.treasuredata.com':
                     return 'development eu01';
 
                   case 'console-staging.treasuredata.com':
+                  case 'console-staging-next.treasuredata.com':
                     return 'staging aws';
                   case 'console-staging.treasuredata.co.jp':
+                  case 'console-staging-next.treasuredata.co.jp':
                     return 'staging aws-tokyo';
                   case 'console-staging.eu01.treasuredata.com':
+                  case 'console-staging-next.eu01.treasuredata.com':
                     return 'staging eu01';
                   case 'console-staging.ap02.treasuredata.com':
+                  case 'console-staging-next.ap02.treasuredata.com':
                     return 'staging ap02';
 
                   case 'console.treasuredata.com':
+                  case 'console-next.treasuredata.com':
                     return 'production aws';
                   case 'console.treasuredata.co.jp':
+                  case 'console-next.treasuredata.co.jp':
                     return 'production aws-tokyo';
                   case 'console.eu01.treasuredata.com':
+                  case 'console-next.eu01.treasuredata.com':
                     return 'production eu01';
                   case 'console.ap02.treasuredata.com':
+                  case 'console-next.ap02.treasuredata.com':
                     return 'production ap02';
                 }
               })();
