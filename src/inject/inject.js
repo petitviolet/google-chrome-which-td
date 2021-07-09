@@ -68,16 +68,7 @@ chrome.extension.sendMessage({}, function(response) {
             let render = (accountId, userId, email) => {
                 let el = document.createElement('div');
                 el.innerText = buildEnvText(accountId, userId, email);
-                el.style.display = 'flex';
-                el.style.alignItems = 'center';
-                el.style.padding = '3px';
-                el.style.backgroundColor = 'rgb(0,193,222)';
-                el.style.color = '#EEEEEE';
-                el.style.position = 'fixed';
-                el.style.fontWeight = 'bold';
-                el.style.zIndex = 9999;
-                el.style.bottom = 0; // sticky to the bottom left;
-                el.style.borderRadius = '0 5px 5px 0';
+                el.classList.add('which-td');
                 document.body.appendChild(el);
             };
 

@@ -1,0 +1,21 @@
+.which-td {
+  opacity: 0.7;
+  display: flex;
+  align-items: center;
+  padding: 3px;
+  background-color: rgb(0,193,222);
+  color: #EEEEEE;
+  position: fixed;
+  font-weight: bold;
+  z-index: 9999;
+  bottom: 0; /* sticky to the bottom left; */
+  border-radius: 0 5px 5px 0;
+  pointer-events: none;
+}
+
+/* .which-td:active {      */
+/*   pointer-events: none; */
+/* }                       */
+/* .which-td:hover { */
+/*   opacity: 0.2;   */
+/* }                 */

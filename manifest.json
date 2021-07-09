@@ -44,6 +44,9 @@
       ],
       "js": [
         "src/inject/inject.js"
+      ],
+      "css": [
+        "src/style/style.css"
       ]
     }
   ]
